@@ -1,0 +1,12 @@
+## why DF is hard 
+
+1. because it's involve two different group of experts which not certainly understand one each other (IT and layer).
+- not having the permission to access data, you can analyze your server but you might not have the permission anyone else's server that might make thing more difficult.
+- there might be lack of information and data.
+- it might be hard to describe the evidence and technicals even two IT community and expert.
+- the ability to recognize the true data from fake ones and to find the original data.
+- there might be too much data and to convert them into information might be a big challenge. 
+- coordinating communication between all the party that involved in the problem might be time consuming.
+- communication with the third party.
+- different region laws in deferent country.
+- crime that happened in different countries, ex. tracing a purchase that happened in several country.
