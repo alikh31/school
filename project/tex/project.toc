@@ -1,0 +1,17 @@
+\contentsline {chapter}{introduction}{ii}{chapter*.1}
+\contentsline {chapter}{\chapternumberline {1}Methodology}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Bin packing}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Path optimization}{2}{section.1.2}
+\contentsline {chapter}{\chapternumberline {2}Implementation}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Code Standard}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}Data Structure}{4}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}\texttt {rows.h} header file}{4}{subsection.2.2.1}
+\contentsline {subsubsection}{\numberline {2.2.1.1}\texttt {\_\_BoxRow} class}{4}{subsubsection.2.2.1.1}
+\contentsline {subsubsection}{\numberline {2.2.1.2}\texttt {\_\_BoxInContainer} class}{5}{subsubsection.2.2.1.2}
+\contentsline {subsubsection}{\numberline {2.2.1.3}\texttt {\_\_Provider} class}{6}{subsubsection.2.2.1.3}
+\contentsline {subsubsection}{\numberline {2.2.1.4}\texttt {\_\_CArea} class}{6}{subsubsection.2.2.1.4}
+\contentsline {subsubsection}{\numberline {2.2.1.5}\texttt {\_\_Carrier} class}{6}{subsubsection.2.2.1.5}
+\contentsline {subsubsection}{\numberline {2.2.1.6}\texttt {\_\_Pallete} class}{7}{subsubsection.2.2.1.6}
+\contentsline {subsubsection}{\numberline {2.2.1.7}\texttt {\_\_Order} class}{7}{subsubsection.2.2.1.7}
+\contentsline {subsubsection}{\numberline {2.2.1.8}\texttt {Node} class}{8}{subsubsection.2.2.1.8}
+\contentsline {subsubsection}{\numberline {2.2.1.9}\texttt {Path} class}{8}{subsubsection.2.2.1.9}

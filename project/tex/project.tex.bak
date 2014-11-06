@@ -1,0 +1,512 @@
+\documentclass[oneside,titlepage,12pt]{memoir}
+
+
+
+\setlength{\parindent}{20pt}
+\setlength{\oddsidemargin}{0.5cm}
+\setlength{\evensidemargin}{0.5cm}
+\setlength{\marginparsep}{0.75cm}
+\setlength{\marginparwidth}{2.5cm}
+\setlength{\marginparpush}{1.0cm}
+\setlength{\textwidth}{150mm}
+
+
+\usepackage[round]{natbib}\citeindextrue % Round brackets around citations, change to square for square brackets
+\usepackage{graphicx} % Required to include images
+\usepackage{color} % Required for custom colors
+\usepackage{amsmath,amssymb,theorem} % Math packages
+\usepackage{listings} % Required for including snippets of code
+\usepackage{booktabs} % Required for better horizontal rules in tables
+\usepackage{xspace} % Provides the ability to use an intelligent space which is used in \institution and \department
+\usepackage[printonlyused,withpage]{acronym} % Include a list of acronyms
+\usepackage{rotating} % Allows tables and figures to be rotated
+\usepackage{hyperref} % Required for links and changing link options
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+
+
+
+\hypersetup{colorlinks, breaklinks, linkcolor=black,citecolor=black,filecolor=black,urlcolor=black} % Set up hyperlinks including colors for references, urls and citations
+
+%\definecolor{c64}{rgb}{.063,0,.612} % Example color definition, the color can be used with the \color{name} command
+
+\makeatletter
+\renewcommand{\fnum@figure}{\textsc{\figurename~\thefigure}} % Make the "Figure 1.1" text in small caps
+\makeatother
+
+%----------------------------------------------------------------------------------------
+% Information
+
+\title{Cargo Loading} % Thesis title
+
+\author{Seyed Ali Khoramshahi\\ \\ \\ \\Prague College\\School of Computing\\ \\ } % Author name
+
+\date{October 2014} % The date
+
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS DEPTH
+%----------------------------------------------------------------------------------------
+
+\maxsecnumdepth{subsubsection}
+\maxtocdepth{subsection}
+
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER HEADING STYLE
+%----------------------------------------------------------------------------------------
+
+\makeatletter
+\makechapterstyle{thesis}{
+\renewcommand{\chapternamenum}{}
+\setlength{\beforechapskip}{0pt}
+\setlength{\midchapskip}{0pt}
+\setlength{\afterchapskip}{0pt}
+\renewcommand{\chapnamefont}{\LARGE}
+\renewcommand{\chapnumfont}{\chapnamefont}
+\renewcommand{\chaptitlefont}{\chapnamefont}
+\renewcommand{\printchapternum}{}
+\renewcommand{\afterchapternum}{}
+\renewcommand{\printchaptername}{}
+\renewcommand{\afterchaptertitle}{\chapnumfont\hfill\thechapter\\\vspace*{-.3cm}\hrulefill\vspace*{6cm}\\}
+}
+\makeatother
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\begin{titlingpage}
+\maketitle
+\end{titlingpage}
+
+\frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\tableofcontents* % Print the table of contents
+
+\cleartoverso % Force a break to an even page
+
+%----------------------------------------------------------------------------------------
+
+
+
+\chapterstyle{thesis}
+\chapter{introduction}
+Increasing growing in producing goods in last century has been increased the demand for finding best solution to transfer and store these products more than any time, this matter seems more important when it comes to the pollution and cost caused by all different carriers used to complete the circle of production and delivery. this is what brings us to pay more and more attention to logistics and finding best solution to optimized these procedures. 
+
+ 
+Logistics defines as the procedure of collecting, storing and delivering goods between the point of production and costumer. this can be broken down into external and internal logistics, the procedure happening inside and outside the storage place, the subjective of the following project is to offer an optimized and automatized solution for external logistic. 
+
+ 
+
+In order to solve the problem of external logistics it's essential to solve these two steps: first bin packing, to optimize planning of inside each carrier and then optimization of path for all carrier to find the best solution. 
+ 
+
+The result of this project leads to a cross-platform application which by given information can suggest the paths for collect or delivering the goods and a suggested planning for placing the goods inside each carrier.
+
+\clearpage
+
+
+\mainmatter % Begin numeric (1,2,3...) page numbering
+
+\chapterstyle{thesis}
+\chapter{Methodology}
+
+
+As mentioned in introduction current applications is consist of two main problems: first bin packing, and path optimizer.
+
+\section{Bin packing}
+Through the history of computer science the problem of bin packing has been discussed in all different variety such as different dimensions for the environment like 2-dimension or 3-dimension, and there has been so many suggested solution to this problem. although there are two main algorithm:
+
+\begin{description}
+\item[First fit]
+This Heuristic algorithm is based on the ordering the package arbitrary and try to fit them into first bin if possible. After putting each packet the rest of the space in the bin will be define as a new bin appropriately.
+
+This algorithm can be optimized by ordering the packets by their size, from the biggest to smallest, so after putting the first there for biggest packet into the bin we could have the smallest portion of space as our next been therefore more space would be saved.
+
+Although in the main algorithm there is no limitation as the weight for pallets and maximum payload for each pallet it could be implemented in such a way.
+   
+\item[Tabu search]
+This algorithm works based on the computed penalties for each bin in the space, so with the calculation of the penalty for each package depend on how well its fitted to the given space, and find the packet with the minimum penalty for every space it can get the decision of putting the package in that space.
+
+
+As the main point of this algorithm is based on the given penalties to every individual bins and package to fit trough them it seems to be easier to implement this algorithm based on real life limitation for shipment.
+\end{description}
+
+The algorithm suggested in this project is a combination of these two algorithm with some changes in order to make it more suitable to real life conditions.
+
+\section{Path optimization}
+
+Using bin packing algorithm, path optimizer is making sure that each carrier has been loaded up to it's maximum capacity. this will reduce the number of half empty carriers and leads to save the time and cost caused by them.
+
+\section*{}
+The programming language chosen for this task is C++. there are two main reason for this, first to ease of use this application should have been design despite the different type of operation system having 3D engine and complex user interface would leave us to choose between C++ and Java, and as for java virtual machine and much higher process time, C++ has been chosen. 
+
+Qt is an open source and cross platform library for C++ in order to designing complex GUI and managed data structure such as lists it also has the ability to integrate with openGL, this project has been implemented using Qt, at the beginning of the project 3D engine for showing the result of planning algorithm was Coin3D, a OpenGl based complex 3D engine and scene manager, but due to the complexity in compiling the following library in different platform such as Windows, Mac OS and Linux it's been replaced by OpenGL itself which limits the operation on 3D viewer up to some level.
+
+For ease of use and better understanding of changes in source code a private repository in GitHub has been opened to submit any possible issues or expanding plans.
+
+%----------------------------------------------------------------------------------------
+
+\chapterstyle{thesis}
+\chapter{Implementation}
+
+This chapter is an explanation about the source code of the Cargo
+Loading application, first there will be some explanation about the data
+structure and the choice of use of any specific structure then there
+will be explanation about different algorithm that has been used and the
+time all the limitation that has been designed in the core algorithm to
+make this application more real life like and easier to use.
+
+\section{Code Standard}\label{code-standard}
+
+To increase the code readability some grand rule has been put through as
+following:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  all the classes are starting with capital \texttt{C} ex.
+  \texttt{CClass}
+\item
+  object that are member and not belonging to a local function are
+  staring with \texttt{m\_} ex. \texttt{m\_object}
+\item
+  pointers also have \texttt{p} before their name ex. \texttt{pPointer}
+  , \texttt{m\_pPointer}
+\item
+  boolean are starting with \texttt{b} ex. \texttt{bBool} ,
+  \texttt{m\_bBool}
+\item
+  names starts with capital letter ex. \texttt{Name}
+\item
+  in case of multi words names each word start with capital ex.
+  MultiWord, m\_MultiWord , m\_pMultiWord
+\item
+  before the name of the function there are \texttt{pragma} to make it
+  easier to collaps the section inside.
+\item
+  name of the function with the boolean result are starting with
+  \texttt{is}, ex. \texttt{isFunction()}
+\item
+  function with getting the information starting with \texttt{get}, ex.
+  \texttt{getfuntion()}
+\item
+  function with setting the information starting with \texttt{set}, ex.
+  \texttt{setfuntion()}
+\item
+  main classes related to the core optimizer and algorithm are starting
+  with \texttt{\_\_} ex. \texttt{\_\_ClassName}
+\item
+  all the classes has constructor to fill up the predefined values
+\end{itemize}
+
+\section{Data Structure}\label{data-structure}
+
+This application is using the self implemented data structure instead of
+the usage of data storage third party applications like data bases the
+reason would be to eliminate any chance of corruption in the procedure
+of development as the main aim of this application is the algorithm
+behind it this would help to have better estimation on time level of the
+main core and to depart any external process time.
+
+For any object in that has been used special class with a name related
+to that object has been designed, to make the code more readable some
+standards has been follow in the next section this standards will be
+discussed. after which there will be explanation about \texttt{rows.h}
+file which is responsible about the majority of the main classes that
+has been used over the project and algorithm.
+
+\subsection{\texttt{rows.h} header
+file}\label{rows.h-header-file}
+
+This file is in charge of most of the classes that has been used for the
+main purpose of the optimization and the running of the algorithm there
+are 9 different classes that has been design for this purpose.
+
+
+\subsubsection{\texttt{\_\_BoxRow} class}\label{boxrow-class}
+
+\texttt{\_\_BoxRow} has been used to store the main cargo that has been
+got from the user in cargo tab or has been restored from the
+\texttt{data.dat} saved file. this file has the following options:
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \texttt{id}: automatically generated to identify each individual cargo
+  by a unique number the number is an integer.
+\item
+  \texttt{Desc}: user define contains the name or the description of the
+  specific cargo.
+\item
+  \texttt{code}: variable to help to show id in different windows.
+\item
+  \texttt{NodeId}: variable to keep the id of the related node.
+\item
+  \texttt{PaleteSizeD}: Cargo size depth.
+\item
+  \texttt{PaleteSizeH}: Cargo size width.
+\item
+  \texttt{PaleteSizeW}: Cargo size height.
+\item
+  \texttt{PaleteWeight}: Weight of the Cargo.
+\item
+  \texttt{PaleteWeight}: to specify which sides is allowed to rotate the
+  cargo if put as \texttt{1 2 3 4 5 6} means the core is allowed to put
+  the cargo in every face and rotate in any direction. if the cargo is
+  only allowed to stand in on face this can be specified like
+  \texttt{1 4}
+\item
+  \texttt{Color}: color indicator for the cargo.
+\item
+  \texttt{Priority}: if there are any priority on the cargo (to be
+  implemented)
+\item
+  \texttt{MaxLoad}: the maximum weight that the cargo can carry on top.
+\item
+  \texttt{BoxCounter}; helper variable to auto generate the id and have
+  the counter for the cargoes.
+\end{itemize}
+
+there are two function in this
+class,\texttt{void SaveToBuffer(CBuffer* pBuffer)} and
+\texttt{void ReadFromBuffer(CBuffer* pBuffer)}, to save and load the
+information from \texttt{date.dat} file to prevent the loose of the data
+on closing the application.
+
+\subsubsection{\texttt{\_\_BoxInContainer}
+class}\label{boxincontainer-class}
+
+\texttt{\_\_BoxInContainer} has been used to store the computed data
+after the run of the algorithm like optimization, it help to store the
+information for calculated location and in case of any rotation changes
+in width, height or depth plus their 3D location inside the carrier.
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \texttt{w}: calculated width of the cargo(in case of rotation is
+  different to main node width).
+\item
+  \texttt{h}: calculated height of the cargo(in case of rotation is
+  different to main node height).
+\item
+  \texttt{d}: calculated depth of the cargo(in case of rotation is
+  different to main node depth).
+\item
+  \texttt{x}: X location of the box in the carrier.
+\item
+  \texttt{y}: Y location of the box in the carrier.
+\item
+  \texttt{z}: Z location of the box in the carrier.
+\item
+  \texttt{NodeId}: parent node ID;
+\item
+  \texttt{ContainerID}: id of the carrier that has been placed in.
+\end{itemize}
+
+\subsubsection{\texttt{\_\_Provider} class}\label{provider-class}
+
+\texttt{\_\_Provider} has been used to store the information of the
+places the cargo has to been collected from.
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \texttt{id}: automatically generated to identify each individual
+  provider by a unique number the number is an integer.
+\item
+  \texttt{name}: name identifier of the provider.
+\item
+  \texttt{Address}: store address of the provider. this variable is not
+  being used inside the algorithm and is just to notify the user.
+\item
+  \texttt{phi}: phi location of the provider optimization of the path.
+\item
+  \texttt{landa}: landa location of the provider optimization of the
+  path.
+\item
+  \texttt{ProviderCounter}: helper variable to auto generate the id and
+  have the counter for the providers.
+\end{itemize}
+
+\subsubsection{\texttt{\_\_CArea} class}\label{carea-class}
+
+\texttt{\_\_CArea} has been design to store the free spaces in carrier
+in order to place the cargoes inside.
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \texttt{m\_W}: with of the space.
+\item
+  \texttt{m\_H}: height of the space.
+\item
+  \texttt{m\_X}: X position of the space.
+\item
+  \texttt{m\_Y}: Y position of the space.
+\item
+  \texttt{m\_Z}: Z position of the space.
+\item
+  \texttt{m\_FloorZ}: Z position of the space if it is belong to the
+  bottom of the carrier (for optimization purposes)
+\item
+  \texttt{m\_TopZ}: Z position of the space if it is belong to the top
+  of the carrier (for optimization purposes)
+\item
+  \texttt{m\_MaxLoad}: indicator to specify how much weight is allowed
+  into that certain space.
+\end{itemize}
+
+\subsubsection{\texttt{\_\_Carrier} class}\label{carrier-class}
+
+\texttt{\_\_Carrier} has been used to store information about different
+carrier that can be user to put the cargoes on.
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \texttt{id}: automatically generated to identify each individual
+  carrier by a unique number the number is an integer.
+\item
+  \texttt{name}: name of the carrier.
+\item
+  \texttt{Depth}: Depth of the carrier.
+\item
+  \texttt{Width}: Width of the carrier.
+\item
+  \texttt{Height}: Height of the carrier.
+\item
+  \texttt{MaxLoad}: maximum weight that any carrier can be loaded.
+\item
+  \texttt{CostPerKm}: cost of the carrier per kilo meter to use for the
+  optimization of the costs.
+\item
+  \texttt{VahicleType}: type of the carrier.
+\item
+  \texttt{m\_FloorAreas}: free spaces at the bottom of the carrier to
+  load the cargoes.
+\item
+  \texttt{m\_TopAreas}: free spaces NOT at the bottom of the carrier to
+  load the cargoes.
+\item
+  \texttt{CarrierCounter}: helper variable to auto generate the id and
+  have the counter for the carriers.
+\item
+  \texttt{m\_BoxList}: list of the boxed placed inside the carrier.
+\end{itemize}
+
+\subsubsection{\texttt{\_\_Pallete} class}\label{pallete-class}
+
+\texttt{\_\_Pallete} has been designed to store the relation and
+priority of the cargoes(to be implemented).
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \texttt{id}: automatically generated to identify each individual
+  pallet relation by a unique number the number is an integer.
+\item
+  \texttt{name}: name of the relation pattern.
+\item
+  \texttt{bIsPutOver}: list of relationships in boolean.
+\item
+  \texttt{ProviderCounter}: helper variable to auto generate the id and
+  have the counter for the pallet relations.
+\end{itemize}
+
+\subsubsection{\texttt{\_\_Order} class}\label{order-class}
+
+\texttt{\_\_Order} has been design to store the user's order of any
+cargoes from any provider the number and the time that item is needed.
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \texttt{id}: automatically generated to identify each individual order
+  by a unique number the number is an integer.
+\item
+  \texttt{BoxID}: id of the cargo that has been ordered.
+\item
+  \texttt{count}: number of the cargo that has been ordered.
+\item
+  \texttt{minTime}: the minimum time of the limitation that the
+  requested cargo is needed.
+\item
+  \texttt{mamTime}: the maximum time of the limitation that the
+  requested cargo is needed.
+\item
+  \texttt{distFromCenter}: this variable has been design to store the
+  calculated distance that the provider has with the main point.
+\item
+  `ProviderID: id of the provider that has been ordered.
+\item
+  \texttt{Provider}: pointer to the provider object.
+\item
+  \texttt{OrderCounter}: helper variable to auto generate the id and
+  have the counter for the order.
+\end{itemize}
+
+\subsubsection{\texttt{Node} class}\label{node-class}
+
+this class contains information about each node inside a path that
+carrier have to visit in order to collect or deliver the goods and
+cargoes.
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \texttt{id}: unique identifier to recognize each individual node.
+\item
+  \texttt{m\_Dist}: distance between the main location and node location
+  that carrier has to pass.
+\item
+  \texttt{m\_phi}: phi location of the node.
+\item
+  \texttt{m\_landa}: landa locatio of the node.
+\item
+  \texttt{m\_Order}: pointer to order list.
+\item
+  \texttt{NodeCounter}: helper variable to auto generate the id and have
+  the counter for the node.
+\end{itemize}
+
+\subsubsection{\texttt{Path} class}\label{path-class}
+
+This class is for store all the information related to each path that
+carrier have to take plus their node inside it.
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \texttt{id}: unique identifier to recognize each individual path.
+\item
+  \texttt{m\_Node}: a list of all the nodes inside the certain path;
+\item
+  \texttt{m\_Carrier}: the carrier for this path which contains all the
+  location of the box inside it.
+\item
+  \texttt{m\_minTime}: minimum limitation that the certain carrier has
+  to leave.
+\item
+  \texttt{m\_maxTime}: maximum limitation that the certain carrier has
+  to leave.
+\item
+  \texttt{m\_Cost}: cost of this certain path.
+\item
+  \texttt{m\_PenaltyCost}: penalty cost for empty spaces inside the
+  carrier to compute the most optimized solution.
+\item
+  \texttt{PathCounter}: helper variable to auto generate the id and have
+  the counter for the path.
+\end{itemize}
+
+\end{document}
+
