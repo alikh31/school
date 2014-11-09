@@ -1,0 +1,53 @@
+## CREATE command
+
+### PRIMARY KEY
+
+Constrain constrain_name PRIMARY KEY (Culomn_name)
+FOREIGN KEY (attribute) REFERENCE referenced_table (referenced_table_attribute)
+
+### CHECK 
+
+CONTRIANT name CHECK (condition)
+
+### update contraint
+
+    ALTER TABLE Orders
+    ADD CONSTRAINT fk_PerOrders
+    FOREIGN KEY (P_Id)
+    REFERENCES Persons(P_Id)
+    
+### INSERT
+
+    USE [db04]
+    GO
+    
+    INSERT INTO [dbo].[department]
+               ([dept_no]
+               ,[dept_name]
+               ,[location])
+         VALUES
+               (<dept_no, char(4),>
+               ,<dept_name, char(25),>
+               ,<location, char(30),>)
+    GO
+    
+** always use `USE [db04]` at the beginning of the file **
+
+## DELETE
+
+    USE [db04]
+    GO
+    
+    go
+    
+### CASCADE 
+
+
+    ALTER TABLE works_on
+    DROP CONSTRAINT [foreign1_works]
+    GO
+    
+    
+    ALTER TABLE [dbo].[works_on]  WITH NOCHECK ADD  CONSTRAINT [foreign1_works] FOREIGN KEY([emp_no])
+    REFERENCES [dbo].[employee] ([emp_no]) ON DELETE CASCADE 
+    GO
